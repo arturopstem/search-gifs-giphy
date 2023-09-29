@@ -26,11 +26,11 @@ const displayImage = (response) => {
 const API_KEY = 'BHycJDA2vU3JeQ8H8t3w600RVC8k9PJY';
 const ENDPOINT = 'api.giphy.com/v1/gifs/translate';
 
-const getImage = (searchTerm) => {
+const getImage = async (searchTerm) => {
   const url = `https://${ENDPOINT}?api_key=${API_KEY}&s=${searchTerm}`;
-  fetch(url)
-    .then((response) => response.json())
-    .then(displayImage);
+  const response = await fetch(url);
+  const parsedResponse = await response.json();
+  displayImage(parsedResponse);
 };
 
 /* ------------------------------- Form Submit ------------------------------ */
